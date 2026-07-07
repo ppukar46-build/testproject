@@ -11,544 +11,457 @@
     <script src="script.js" defer></script>
 </head>
 
+
+
+
+
+
 <body>
 
-<header>
-    <h1>🚀 DSA Roadmap Tracker</h1>
-    <p>My Journey from 2nd Year to Placement</p>
+<header class="header">
 
-    <div class="progress-container">
-        <div class="progress-bar" id="progressBar"></div>
+    <h1>🚀 DSA Roadmap Tracker</h1>
+
+    <p>Become Placement Ready by February 2027</p>
+
+    <!-- Search -->
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="🔍 Search Topics..."
+        >
+
     </div>
 
-    <p id="progressText">0% Completed</p>
+    <!-- Overall Progress -->
+
+    <div class="progress-section">
+
+        <div class="progress-container">
+
+            <div
+                class="progress-bar"
+                id="progressBar">
+            </div>
+
+        </div>
+
+        <p id="progressText">
+            0% Completed
+        </p>
+
+    </div>
+
+    <!-- Statistics -->
+
+    <div class="stats">
+
+        <div class="stat-card">
+
+            <h3 id="completedCount">0</h3>
+
+            <p>Completed</p>
+
+        </div>
+
+        <div class="stat-card">
+
+            <h3 id="remainingCount">0</h3>
+
+            <p>Remaining</p>
+
+        </div>
+
+        <div class="stat-card">
+
+            <h3 id="readiness">
+                Beginner 🌱
+            </h3>
+
+            <p>Placement Status</p>
+
+        </div>
+
+    </div>
+
+    <!-- Buttons -->
+
+    <div class="header-buttons">
+
+        <button id="themeBtn">
+
+            🌙 Dark Mode
+
+        </button>
+
+        <button
+            id="resetBtn"
+            onclick="resetProgress()">
+
+            🗑 Reset Progress
+
+        </button>
+
+    </div>
+
 </header>
+
+<!-- ===================== -->
 
 <main id="roadmap">
 
-<!-- ================= JULY ================= -->
+<!-- JULY -->
 
-<section class="month-card" data-month="6">
+<section
+class="month-card"
+data-month="6">
 
-<h2>📅 July</h2>
+<h2>
+
+📅 July
+
+<span class="month-progress">
+
+0%
+
+</span>
+
+</h2>
+
+<div class="mini-progress">
+
+<div
+class="mini-bar">
+</div>
+
+</div>
 
 <p class="days-left"></p>
 
+<!-- =================== -->
+
 <div class="topic">
-<label>
+
+<label class="topic-title">
+
 <input type="checkbox">
-C++ Basics
+
+📘 C++ Basics
+
 </label>
 
 <div class="hover-card">
 
-    <h4>📘 C++ Basics</h4>
+<label class="subtopic">
 
-    <label class="subtopic">
-        <input type="checkbox">
-        Variables
-    </label>
+<input type="checkbox">
 
-    <label class="subtopic">
-        <input type="checkbox">
-        Data Types
-    </label>
+Variables
 
-    <label class="subtopic">
-        <input type="checkbox">
-        Operators
-    </label>
+</label>
 
-    <label class="subtopic">
-        <input type="checkbox">
-        Loops
-    </label>
+<label class="subtopic">
 
-    <label class="subtopic">
-        <input type="checkbox">
-        Functions
-    </label>
+<input type="checkbox">
 
-    <label class="subtopic">
-        <input type="checkbox">
-        Arrays
-    </label>
+Data Types
 
-    <label class="subtopic">
-        <input type="checkbox">
-        Pointers
-    </label>
+</label>
+
+<label class="subtopic">
+
+<input type="checkbox">
+
+Operators
+
+</label>
+
+<label class="subtopic">
+
+<input type="checkbox">
+
+Input / Output
+
+</label>
+
+<label class="subtopic">
+
+<input type="checkbox">
+
+Conditions
+
+</label>
+
+<label class="subtopic">
+
+<input type="checkbox">
+
+Loops
+
+</label>
+
+<label class="subtopic">
+
+<input type="checkbox">
+
+Functions
+
+</label>
+
+<label class="subtopic">
+
+<input type="checkbox">
+
+Arrays
+
+</label>
+
+<label class="subtopic">
+
+<input type="checkbox">
+
+Pointers
+
+</label>
 
 </div>
 
+</div>
+
+<!-- =================== -->
+
 <div class="topic">
-<label>
+
+<label class="topic-title">
+
 <input type="checkbox">
-STL
+
+📦 STL
+
 </label>
 
 <div class="hover-card">
-<h4>📦 STL</h4>
-<ul>
-    <label for="vector">
-        <input type="checkbox">
-        Vector
-    </label>
-    <label for="pair">
-        <input type="checkbox">
-        Pair
-    </label>
-    <label for="map">
-        <input type="checkbox">
-        Map
-    </label>
-    <label for="set">
-        <input type="checkbox">
-        Set
-    </label>
-<li>Vector</li>
-<li>Pair</li>
-<li>Map</li>
-<li>Set</li>
-<li>Queue</li>
-<li>Stack</li>
-<li>Priority Queue</li>
-<li>Algorithms</li>
-</ul>
-</div>
+
+<label class="subtopic">
+
+<input type="checkbox">
+
+Vector
+
+</label>
+
+<label class="subtopic">
+
+<input type="checkbox">
+
+Pair
+
+</label>
+
+<label class="subtopic">
+
+<input type="checkbox">
+
+Map
+
+</label>
+
+<label class="subtopic">
+
+<input type="checkbox">
+
+Set
+
+</label>
+
+<label class="subtopic">
+
+<input type="checkbox">
+
+Queue
+
+</label>
+
+<label class="subtopic">
+
+<input type="checkbox">
+
+Stack
+
+</label>
+
+<label class="subtopic">
+
+<input type="checkbox">
+
+Priority Queue
+
+</label>
+
+<label class="subtopic">
+
+<input type="checkbox">
+
+Algorithms
+
+</label>
+
 </div>
 
+</div>
+
+<!-- =================== -->
+
 <div class="topic">
-<label>
+
+<label class="topic-title">
+
 <input type="checkbox">
-Time Complexity
+
+⏱ Time Complexity
+
 </label>
 
 <div class="hover-card">
-<h4>⏱ Time Complexity</h4>
-<ul>
-<li>Big O</li>
-<li>Big Ω</li>
-<li>Big Θ</li>
-<li>Best Case</li>
-<li>Worst Case</li>
-<li>Space Complexity</li>
-</ul>
+
+<label class="subtopic">
+
+<input type="checkbox">
+
+Big O
+
+</label>
+
+<label class="subtopic">
+
+<input type="checkbox">
+
+Big Ω
+
+</label>
+
+<label class="subtopic">
+
+<input type="checkbox">
+
+Big Θ
+
+</label>
+
+<label class="subtopic">
+
+<input type="checkbox">
+
+Best Case
+
+</label>
+
+<label class="subtopic">
+
+<input type="checkbox">
+
+Worst Case
+
+</label>
+
+<label class="subtopic">
+
+<input type="checkbox">
+
+Space Complexity
+
+</label>
+
 </div>
+
 </div>
+
+<label class="practice">
+
+<input type="checkbox">
+
+Practice 40 Problems
+
+</label>
 
 </section>
 
-<!-- ================= AUGUST ================= -->
+<!-- ===================== -->
+<!-- AUGUST -->
+<!-- ===================== -->
 
 <section class="month-card" data-month="7">
 
-<h2>📅 August</h2>
+    <h2>
+        📅 August
+        <span class="month-progress">0%</span>
+    </h2>
 
-<div class="topic">
-<label>
-<input type="checkbox">
-Arrays
-</label>
-
-<div class="hover-card">
-<h4>📚 Arrays</h4>
-<ul>
-<li>Traversal</li>
-<li>Prefix Sum</li>
-<li>Sliding Window</li>
-<li>Two Pointer</li>
-<li>Kadane's Algorithm</li>
-</ul>
-</div>
-</div>
-
-<div class="topic">
-<label>
-<input type="checkbox">
-Strings
-</label>
-
-<div class="hover-card">
-<h4>🔤 Strings</h4>
-<ul>
-<li>Character Arrays</li>
-<li>Palindrome</li>
-<li>Hashing</li>
-<li>Pattern Matching</li>
-<li>KMP Algorithm</li>
-</ul>
-</div>
-</div>
-
-<label class="practice">
-<input type="checkbox">
-Practice 40 Problems
-</label>
-
-</section>
-
-<!-- ================= SEPTEMBER ================= -->
-
-<section class="month-card" data-month="8">
-
-<h2>📅 September</h2>
-
-<div class="topic">
-<label>
-<input type="checkbox">
-Recursion
-</label>
-
-<div class="hover-card">
-<h4>🔁 Recursion</h4>
-<ul>
-<li>Base Case</li>
-<li>Backtracking</li>
-<li>Subsequences</li>
-<li>Permutations</li>
-<li>N Queens</li>
-</ul>
-</div>
-</div>
-
-<div class="topic">
-<label>
-<input type="checkbox">
-Binary Search
-</label>
-
-<div class="hover-card">
-<h4>🔎 Binary Search</h4>
-<ul>
-<li>Classic Binary Search</li>
-<li>Lower Bound</li>
-<li>Upper Bound</li>
-<li>Binary Search on Answer</li>
-</ul>
-</div>
-</div>
-
-<div class="topic">
-<label>
-<input type="checkbox">
-Sorting
-</label>
-
-<div class="hover-card">
-<h4>📊 Sorting</h4>
-<ul>
-<li>Bubble Sort</li>
-<li>Selection Sort</li>
-<li>Insertion Sort</li>
-<li>Merge Sort</li>
-<li>Quick Sort</li>
-</ul>
-</div>
-</div>
-
-<label class="practice">
-<input type="checkbox">
-Practice 50 Problems
-</label>
-
-</section>
-
-<!-- ================= OCTOBER ================= -->
-
-<section class="month-card" data-month="9">
-
-<h2>📅 October</h2>
-
-<div class="topic">
-<label>
-<input type="checkbox">
-Linked List
-</label>
-
-<div class="hover-card">
-<h4>🔗 Linked List</h4>
-<ul>
-<li>Singly Linked List</li>
-<li>Doubly Linked List</li>
-<li>Circular Linked List</li>
-<li>Reverse List</li>
-<li>Cycle Detection</li>
-</ul>
-</div>
-</div>
-
-<div class="topic">
-<label>
-<input type="checkbox">
-Stack
-</label>
-
-<div class="hover-card">
-<h4>📚 Stack</h4>
-<ul>
-<li>Implementation</li>
-<li>Balanced Parentheses</li>
-<li>Next Greater Element</li>
-<li>Monotonic Stack</li>
-<li>Expression Conversion</li>
-</ul>
-</div>
-</div>
-
-<div class="topic">
-<label>
-<input type="checkbox">
-Queue
-</label>
-
-<div class="hover-card">
-<h4>🚶 Queue</h4>
-<ul>
-<li>Linear Queue</li>
-<li>Circular Queue</li>
-<li>Deque</li>
-<li>Priority Queue</li>
-</ul>
-</div>
-</div>
-
-<div class="topic">
-<label>
-<input type="checkbox">
-Hashing
-</label>
-
-<div class="hover-card">
-<h4>#️⃣ Hashing</h4>
-<ul>
-<li>Hash Map</li>
-<li>Hash Set</li>
-<li>Frequency Array</li>
-<li>Collision Handling</li>
-</ul>
-</div>
-</div>
-
-<label class="practice">
-<input type="checkbox">
-Practice 60 Problems
-</label>
-
-</section>
-<!-- ================= NOVEMBER ================= -->
-
-<section class="month-card" data-month="10">
-
-    <h2>📅 November</h2>
-
-    <div class="topic">
-        <label>
-            <input type="checkbox">
-            Trees
-        </label>
-
-        <div class="hover-card">
-            <h4>🌳 Trees</h4>
-            <ul>
-                <li>Binary Tree</li>
-                <li>Tree Traversals</li>
-                <li>Height & Diameter</li>
-                <li>Lowest Common Ancestor</li>
-                <li>Views of Tree</li>
-                <li>Boundary Traversal</li>
-            </ul>
-        </div>
+    <div class="mini-progress">
+        <div class="mini-bar"></div>
     </div>
 
+    <p class="days-left"></p>
+
+    <!-- Arrays -->
+
     <div class="topic">
-        <label>
+
+        <label class="topic-title">
             <input type="checkbox">
-            BST
+            📚 Arrays
         </label>
 
         <div class="hover-card">
-            <h4>🌲 Binary Search Tree</h4>
-            <ul>
-                <li>Search</li>
-                <li>Insert</li>
-                <li>Delete</li>
-                <li>Validate BST</li>
-                <li>Kth Smallest</li>
-            </ul>
+
+            <label class="subtopic"><input type="checkbox"> Traversal</label>
+
+            <label class="subtopic"><input type="checkbox"> Prefix Sum</label>
+
+            <label class="subtopic"><input type="checkbox"> Sliding Window</label>
+
+            <label class="subtopic"><input type="checkbox"> Two Pointer</label>
+
+            <label class="subtopic"><input type="checkbox"> Kadane's Algorithm</label>
+
+            <label class="subtopic"><input type="checkbox"> Merge Intervals</label>
+
+            <label class="subtopic"><input type="checkbox"> Matrix Problems</label>
+
         </div>
+
     </div>
 
+    <!-- Strings -->
+
     <div class="topic">
-        <label>
+
+        <label class="topic-title">
             <input type="checkbox">
-            Heap
+            🔤 Strings
         </label>
 
         <div class="hover-card">
-            <h4>⛰ Heap</h4>
-            <ul>
-                <li>Min Heap</li>
-                <li>Max Heap</li>
-                <li>Heapify</li>
-                <li>Heap Sort</li>
-                <li>Priority Queue</li>
-            </ul>
+
+            <label class="subtopic"><input type="checkbox"> Character Arrays</label>
+
+            <label class="subtopic"><input type="checkbox"> Frequency Count</label>
+
+            <label class="subtopic"><input type="checkbox"> Palindrome</label>
+
+            <label class="subtopic"><input type="checkbox"> Anagrams</label>
+
+            <label class="subtopic"><input type="checkbox"> Pattern Matching</label>
+
+            <label class="subtopic"><input type="checkbox"> KMP Algorithm</label>
+
+            <label class="subtopic"><input type="checkbox"> Rabin Karp</label>
+
         </div>
-    </div>
 
-    <label class="practice">
-        <input type="checkbox">
-        Practice 60 Problems
-    </label>
-
-</section>
-
-<!-- ================= DECEMBER ================= -->
-
-<section class="month-card" data-month="11">
-
-    <h2>📅 December</h2>
-
-    <div class="topic">
-        <label>
-            <input type="checkbox">
-            Greedy
-        </label>
-
-        <div class="hover-card">
-            <h4>💡 Greedy</h4>
-            <ul>
-                <li>Activity Selection</li>
-                <li>Fractional Knapsack</li>
-                <li>Job Sequencing</li>
-                <li>Huffman Coding</li>
-                <li>Minimum Platforms</li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="topic">
-        <label>
-            <input type="checkbox">
-            Graphs
-        </label>
-
-        <div class="hover-card">
-            <h4>🕸 Graphs</h4>
-            <ul>
-                <li>BFS</li>
-                <li>DFS</li>
-                <li>Topological Sort</li>
-                <li>Dijkstra</li>
-                <li>Bellman Ford</li>
-                <li>Floyd Warshall</li>
-                <li>Minimum Spanning Tree</li>
-                <li>Disjoint Set Union</li>
-            </ul>
-        </div>
-    </div>
-
-    <label class="practice">
-        <input type="checkbox">
-        Practice 50 Problems
-    </label>
-
-</section>
-
-<!-- ================= JANUARY ================= -->
-
-<section class="month-card" data-month="0">
-
-    <h2>📅 January</h2>
-
-    <div class="topic">
-        <label>
-            <input type="checkbox">
-            Dynamic Programming
-        </label>
-
-        <div class="hover-card">
-            <h4>⚡ Dynamic Programming</h4>
-            <ul>
-                <li>Memoization</li>
-                <li>Tabulation</li>
-                <li>1D DP</li>
-                <li>2D DP</li>
-                <li>Knapsack</li>
-                <li>LIS</li>
-                <li>LCS</li>
-                <li>Matrix Chain Multiplication</li>
-                <li>DP on Trees</li>
-            </ul>
-        </div>
-    </div>
-
-    <label class="practice">
-        <input type="checkbox">
-        Practice 80 Problems
-    </label>
-
-</section>
-
-<!-- ================= FEBRUARY ================= -->
-
-<section class="month-card" data-month="1">
-
-    <h2>📅 February</h2>
-
-    <div class="topic">
-        <label>
-            <input type="checkbox">
-            Tries
-        </label>
-
-        <div class="hover-card">
-            <h4>🔠 Tries</h4>
-            <ul>
-                <li>Insert</li>
-                <li>Search</li>
-                <li>Delete</li>
-                <li>Prefix Search</li>
-                <li>Maximum XOR</li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="topic">
-        <label>
-            <input type="checkbox">
-            Segment Tree
-        </label>
-
-        <div class="hover-card">
-            <h4>🌴 Segment Tree</h4>
-            <ul>
-                <li>Build Tree</li>
-                <li>Range Query</li>
-                <li>Point Update</li>
-                <li>Lazy Propagation</li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="topic">
-        <label>
-            <input type="checkbox">
-            Advanced Topics
-        </label>
-
-        <div class="hover-card">
-            <h4>🚀 Advanced DSA</h4>
-            <ul>
-                <li>Bit Manipulation</li>
-                <li>Fenwick Tree</li>
-                <li>Sparse Table</li>
-                <li>Meet in the Middle</li>
-                <li>Mo's Algorithm</li>
-                <li>String Hashing</li>
-            </ul>
-        </div>
     </div>
 
     <label class="practice">
@@ -558,13 +471,711 @@ Practice 60 Problems
 
 </section>
 
+<!-- ===================== -->
+<!-- SEPTEMBER -->
+<!-- ===================== -->
+
+<section class="month-card" data-month="8">
+
+    <h2>
+        📅 September
+        <span class="month-progress">0%</span>
+    </h2>
+
+    <div class="mini-progress">
+        <div class="mini-bar"></div>
+    </div>
+
+    <p class="days-left"></p>
+
+    <!-- Recursion -->
+
+    <div class="topic">
+
+        <label class="topic-title">
+            <input type="checkbox">
+            🔁 Recursion
+        </label>
+
+        <div class="hover-card">
+
+            <label class="subtopic"><input type="checkbox"> Base Case</label>
+
+            <label class="subtopic"><input type="checkbox"> Recursive Functions</label>
+
+            <label class="subtopic"><input type="checkbox"> Backtracking</label>
+
+            <label class="subtopic"><input type="checkbox"> Subsequences</label>
+
+            <label class="subtopic"><input type="checkbox"> Permutations</label>
+
+            <label class="subtopic"><input type="checkbox"> N Queens</label>
+
+            <label class="subtopic"><input type="checkbox"> Sudoku Solver</label>
+
+        </div>
+
+    </div>
+
+    <!-- Binary Search -->
+
+    <div class="topic">
+
+        <label class="topic-title">
+            <input type="checkbox">
+            🔎 Binary Search
+        </label>
+
+        <div class="hover-card">
+
+            <label class="subtopic"><input type="checkbox"> Classic Binary Search</label>
+
+            <label class="subtopic"><input type="checkbox"> Lower Bound</label>
+
+            <label class="subtopic"><input type="checkbox"> Upper Bound</label>
+
+            <label class="subtopic"><input type="checkbox"> Search in Rotated Array</label>
+
+            <label class="subtopic"><input type="checkbox"> Binary Search on Answer</label>
+
+        </div>
+
+    </div>
+
+    <!-- Sorting -->
+
+    <div class="topic">
+
+        <label class="topic-title">
+            <input type="checkbox">
+            📊 Sorting
+        </label>
+
+        <div class="hover-card">
+
+            <label class="subtopic"><input type="checkbox"> Bubble Sort</label>
+
+            <label class="subtopic"><input type="checkbox"> Selection Sort</label>
+
+            <label class="subtopic"><input type="checkbox"> Insertion Sort</label>
+
+            <label class="subtopic"><input type="checkbox"> Merge Sort</label>
+
+            <label class="subtopic"><input type="checkbox"> Quick Sort</label>
+
+            <label class="subtopic"><input type="checkbox"> Heap Sort</label>
+
+            <label class="subtopic"><input type="checkbox"> Counting Sort</label>
+
+        </div>
+
+    </div>
+
+    <label class="practice">
+        <input type="checkbox">
+        Practice 50 Problems
+    </label>
+
+</section>
+
+<!-- ===================== -->
+<!-- OCTOBER -->
+<!-- ===================== -->
+
+<section class="month-card" data-month="9">
+
+    <h2>
+        📅 October
+        <span class="month-progress">0%</span>
+    </h2>
+
+    <div class="mini-progress">
+        <div class="mini-bar"></div>
+    </div>
+
+    <p class="days-left"></p>
+
+    <!-- Linked List -->
+
+    <div class="topic">
+
+        <label class="topic-title">
+            <input type="checkbox">
+            🔗 Linked List
+        </label>
+
+        <div class="hover-card">
+
+            <label class="subtopic"><input type="checkbox"> Singly Linked List</label>
+
+            <label class="subtopic"><input type="checkbox"> Doubly Linked List</label>
+
+            <label class="subtopic"><input type="checkbox"> Circular Linked List</label>
+
+            <label class="subtopic"><input type="checkbox"> Reverse Linked List</label>
+
+            <label class="subtopic"><input type="checkbox"> Detect Cycle</label>
+
+            <label class="subtopic"><input type="checkbox"> Merge Lists</label>
+
+            <label class="subtopic"><input type="checkbox"> Remove Nth Node</label>
+
+        </div>
+
+    </div>
+
+    <!-- Stack -->
+
+    <div class="topic">
+
+        <label class="topic-title">
+            <input type="checkbox">
+            📚 Stack
+        </label>
+
+        <div class="hover-card">
+
+            <label class="subtopic"><input type="checkbox"> Stack using Array</label>
+
+            <label class="subtopic"><input type="checkbox"> Stack using Linked List</label>
+
+            <label class="subtopic"><input type="checkbox"> Balanced Parentheses</label>
+
+            <label class="subtopic"><input type="checkbox"> Next Greater Element</label>
+
+            <label class="subtopic"><input type="checkbox"> Infix to Postfix</label>
+
+            <label class="subtopic"><input type="checkbox"> Prefix/Postfix Evaluation</label>
+
+            <label class="subtopic"><input type="checkbox"> Monotonic Stack</label>
+
+        </div>
+
+    </div>
+
+    <!-- Queue -->
+
+    <div class="topic">
+
+        <label class="topic-title">
+            <input type="checkbox">
+            🚶 Queue
+        </label>
+
+        <div class="hover-card">
+
+            <label class="subtopic"><input type="checkbox"> Simple Queue</label>
+
+            <label class="subtopic"><input type="checkbox"> Circular Queue</label>
+
+            <label class="subtopic"><input type="checkbox"> Deque</label>
+
+            <label class="subtopic"><input type="checkbox"> Priority Queue</label>
+
+            <label class="subtopic"><input type="checkbox"> Queue using Stack</label>
+
+        </div>
+
+    </div>
+
+    <!-- Hashing -->
+
+    <div class="topic">
+
+        <label class="topic-title">
+            <input type="checkbox">
+            #️⃣ Hashing
+        </label>
+
+        <div class="hover-card">
+
+            <label class="subtopic"><input type="checkbox"> HashMap</label>
+
+            <label class="subtopic"><input type="checkbox"> HashSet</label>
+
+            <label class="subtopic"><input type="checkbox"> Frequency Array</label>
+
+            <label class="subtopic"><input type="checkbox"> Collision Handling</label>
+
+            <label class="subtopic"><input type="checkbox"> Custom Hash</label>
+
+        </div>
+
+    </div>
+
+    <label class="practice">
+        <input type="checkbox">
+        Practice 60 Problems
+    </label>
+
+</section>
+
+<!-- ===================== -->
+<!-- NOVEMBER -->
+<!-- ===================== -->
+
+<section class="month-card" data-month="10">
+
+    <h2>
+        📅 November
+        <span class="month-progress">0%</span>
+    </h2>
+
+    <div class="mini-progress">
+        <div class="mini-bar"></div>
+    </div>
+
+    <p class="days-left"></p>
+
+    <!-- Trees -->
+
+    <div class="topic">
+
+        <label class="topic-title">
+            <input type="checkbox">
+            🌳 Trees
+        </label>
+
+        <div class="hover-card">
+
+            <label class="subtopic"><input type="checkbox"> Binary Tree</label>
+
+            <label class="subtopic"><input type="checkbox"> DFS Traversals</label>
+
+            <label class="subtopic"><input type="checkbox"> BFS Traversal</label>
+
+            <label class="subtopic"><input type="checkbox"> Height of Tree</label>
+
+            <label class="subtopic"><input type="checkbox"> Diameter</label>
+
+            <label class="subtopic"><input type="checkbox"> Boundary Traversal</label>
+
+            <label class="subtopic"><input type="checkbox"> Lowest Common Ancestor</label>
+
+            <label class="subtopic"><input type="checkbox"> Vertical Order</label>
+
+        </div>
+
+    </div>
+
+    <!-- BST -->
+
+    <div class="topic">
+
+        <label class="topic-title">
+            <input type="checkbox">
+            🌲 Binary Search Tree
+        </label>
+
+        <div class="hover-card">
+
+            <label class="subtopic"><input type="checkbox"> Search</label>
+
+            <label class="subtopic"><input type="checkbox"> Insert</label>
+
+            <label class="subtopic"><input type="checkbox"> Delete</label>
+
+            <label class="subtopic"><input type="checkbox"> Validate BST</label>
+
+            <label class="subtopic"><input type="checkbox"> Kth Smallest</label>
+
+            <label class="subtopic"><input type="checkbox"> BST Iterator</label>
+
+        </div>
+
+    </div>
+
+    <!-- Heap -->
+
+    <div class="topic">
+
+        <label class="topic-title">
+            <input type="checkbox">
+            ⛰ Heap
+        </label>
+
+        <div class="hover-card">
+
+            <label class="subtopic"><input type="checkbox"> Min Heap</label>
+
+            <label class="subtopic"><input type="checkbox"> Max Heap</label>
+
+            <label class="subtopic"><input type="checkbox"> Heapify</label>
+
+            <label class="subtopic"><input type="checkbox"> Heap Sort</label>
+
+            <label class="subtopic"><input type="checkbox"> Top K Elements</label>
+
+            <label class="subtopic"><input type="checkbox"> Priority Queue Problems</label>
+
+        </div>
+
+    </div>
+
+    <label class="practice">
+        <input type="checkbox">
+        Practice 60 Problems
+    </label>
+
+</section>
+
+<!-- ===================== -->
+<!-- DECEMBER -->
+<!-- ===================== -->
+
+<section class="month-card" data-month="11">
+
+    <h2>
+        📅 December
+        <span class="month-progress">0%</span>
+    </h2>
+
+    <div class="mini-progress">
+        <div class="mini-bar"></div>
+    </div>
+
+    <p class="days-left"></p>
+
+    <!-- Greedy -->
+
+    <div class="topic">
+
+        <label class="topic-title">
+            <input type="checkbox">
+            💡 Greedy
+        </label>
+
+        <div class="hover-card">
+
+            <label class="subtopic"><input type="checkbox"> Activity Selection</label>
+
+            <label class="subtopic"><input type="checkbox"> Fractional Knapsack</label>
+
+            <label class="subtopic"><input type="checkbox"> Job Sequencing</label>
+
+            <label class="subtopic"><input type="checkbox"> Huffman Coding</label>
+
+            <label class="subtopic"><input type="checkbox"> Minimum Platforms</label>
+
+            <label class="subtopic"><input type="checkbox"> Gas Station Problem</label>
+
+        </div>
+
+    </div>
+
+    <!-- Graphs -->
+
+    <div class="topic">
+
+        <label class="topic-title">
+            <input type="checkbox">
+            🕸 Graphs
+        </label>
+
+        <div class="hover-card">
+
+            <label class="subtopic"><input type="checkbox"> Graph Representation</label>
+
+            <label class="subtopic"><input type="checkbox"> BFS</label>
+
+            <label class="subtopic"><input type="checkbox"> DFS</label>
+
+            <label class="subtopic"><input type="checkbox"> Topological Sort</label>
+
+            <label class="subtopic"><input type="checkbox"> Cycle Detection</label>
+
+            <label class="subtopic"><input type="checkbox"> Dijkstra</label>
+
+            <label class="subtopic"><input type="checkbox"> Bellman Ford</label>
+
+            <label class="subtopic"><input type="checkbox"> Floyd Warshall</label>
+
+            <label class="subtopic"><input type="checkbox"> Minimum Spanning Tree</label>
+
+            <label class="subtopic"><input type="checkbox"> Disjoint Set Union</label>
+
+        </div>
+
+    </div>
+
+    <label class="practice">
+
+        <input type="checkbox">
+
+        Practice 50 Problems
+
+    </label>
+
+</section>
+
+<!-- ===================== -->
+<!-- JANUARY -->
+<!-- ===================== -->
+
+<section class="month-card" data-month="0">
+
+    <h2>
+        📅 January
+        <span class="month-progress">0%</span>
+    </h2>
+
+    <div class="mini-progress">
+        <div class="mini-bar"></div>
+    </div>
+
+    <p class="days-left"></p>
+
+    <div class="topic">
+
+        <label class="topic-title">
+
+            <input type="checkbox">
+
+            ⚡ Dynamic Programming
+
+        </label>
+
+        <div class="hover-card">
+
+            <label class="subtopic"><input type="checkbox"> Memoization</label>
+
+            <label class="subtopic"><input type="checkbox"> Tabulation</label>
+
+            <label class="subtopic"><input type="checkbox"> Fibonacci DP</label>
+
+            <label class="subtopic"><input type="checkbox"> Climbing Stairs</label>
+
+            <label class="subtopic"><input type="checkbox"> 0/1 Knapsack</label>
+
+            <label class="subtopic"><input type="checkbox"> Unbounded Knapsack</label>
+
+            <label class="subtopic"><input type="checkbox"> Longest Increasing Subsequence</label>
+
+            <label class="subtopic"><input type="checkbox"> Longest Common Subsequence</label>
+
+            <label class="subtopic"><input type="checkbox"> Matrix Chain Multiplication</label>
+
+            <label class="subtopic"><input type="checkbox"> DP on Trees</label>
+
+            <label class="subtopic"><input type="checkbox"> DP on Graphs</label>
+
+        </div>
+
+    </div>
+
+    <label class="practice">
+
+        <input type="checkbox">
+
+        Practice 80 Problems
+
+    </label>
+
+</section>
+
+<!-- ===================== -->
+<!-- FEBRUARY -->
+<!-- ===================== -->
+
+<section class="month-card" data-month="1">
+
+    <h2>
+        📅 February
+        <span class="month-progress">0%</span>
+    </h2>
+
+    <div class="mini-progress">
+        <div class="mini-bar"></div>
+    </div>
+
+    <p class="days-left"></p>
+
+    <!-- Tries -->
+
+    <div class="topic">
+
+        <label class="topic-title">
+
+            <input type="checkbox">
+
+            🔠 Tries
+
+        </label>
+
+        <div class="hover-card">
+
+            <label class="subtopic"><input type="checkbox"> Insert</label>
+
+            <label class="subtopic"><input type="checkbox"> Search</label>
+
+            <label class="subtopic"><input type="checkbox"> Delete</label>
+
+            <label class="subtopic"><input type="checkbox"> Prefix Search</label>
+
+            <label class="subtopic"><input type="checkbox"> Maximum XOR</label>
+
+        </div>
+
+    </div>
+
+    <!-- Segment Tree -->
+
+    <div class="topic">
+
+        <label class="topic-title">
+
+            <input type="checkbox">
+
+            🌲 Segment Tree
+
+        </label>
+
+        <div class="hover-card">
+
+            <label class="subtopic"><input type="checkbox"> Build Tree</label>
+
+            <label class="subtopic"><input type="checkbox"> Range Query</label>
+
+            <label class="subtopic"><input type="checkbox"> Point Update</label>
+
+            <label class="subtopic"><input type="checkbox"> Lazy Propagation</label>
+
+        </div>
+
+    </div>
+
+    <!-- Advanced -->
+
+    <div class="topic">
+
+        <label class="topic-title">
+
+            <input type="checkbox">
+
+            🚀 Advanced Topics
+
+        </label>
+
+        <div class="hover-card">
+
+            <label class="subtopic"><input type="checkbox"> Bit Manipulation</label>
+
+            <label class="subtopic"><input type="checkbox"> Fenwick Tree</label>
+
+            <label class="subtopic"><input type="checkbox"> Sparse Table</label>
+
+            <label class="subtopic"><input type="checkbox"> Meet in the Middle</label>
+
+            <label class="subtopic"><input type="checkbox"> Mo's Algorithm</label>
+
+            <label class="subtopic"><input type="checkbox"> String Hashing</label>
+
+        </div>
+
+    </div>
+
+    <label class="practice">
+
+        <input type="checkbox">
+
+        Practice 40 Problems
+
+    </label>
+
+</section>
+
 </main>
 
+<!-- =========================
+     BACK TO TOP BUTTON
+========================= -->
+
+<button id="topBtn" title="Back to Top">
+    ⬆
+</button>
+
+<!-- =========================
+     RESET MODAL
+========================= -->
+
+<div id="resetModal" class="modal">
+
+    <div class="modal-content">
+
+        <h2>⚠ Reset Progress?</h2>
+
+        <p>
+            This will remove all saved progress from your roadmap.
+        </p>
+
+        <div class="modal-buttons">
+
+            <button id="confirmReset">
+                ✅ Yes, Reset
+            </button>
+
+            <button id="cancelReset">
+                ❌ Cancel
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- =========================
+     COMPLETION POPUP
+========================= -->
+
+<div id="completePopup">
+
+    🎉 Congratulations!
+
+    <br><br>
+
+    You completed a whole month.
+
+</div>
+
+<!-- =========================
+     FOOTER
+========================= -->
+
 <footer>
-    <p>💻 Keep Coding Every Day • Consistency Beats Motivation</p>
+
+    <h3>
+        🚀 DSA Roadmap Tracker
+    </h3>
+
+    <p>
+
+        Built by pram using HTML, CSS & JavaScript
+
+    </p>
+
+    <p>
+
+        Keep Coding Every Day • Consistency Beats Motivation
+
+    </p>
+
+    <div class="footer-stats">
+
+        <span id="footerCompleted">
+            ✔ Completed : 0
+        </span>
+
+        <span id="footerRemaining">
+            📚 Remaining : 0
+        </span>
+
+    </div>
+
 </footer>
 
 <script src="script.js"></script>
 
 </body>
+
 </html>
