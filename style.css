@@ -1,0 +1,422 @@
+/* =========================
+   GOOGLE FONT & RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(135deg,#0f172a,#111827,#1e293b);
+    color:#fff;
+    min-height:100vh;
+    padding:40px 20px;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+    max-width:900px;
+    margin:auto;
+    text-align:center;
+    margin-bottom:40px;
+}
+
+header h1{
+    font-size:2.8rem;
+    margin-bottom:10px;
+}
+
+header p{
+    color:#94a3b8;
+}
+
+/* =========================
+   PROGRESS BAR
+========================= */
+
+.progress-container{
+    width:100%;
+    height:18px;
+    background:#243244;
+    border-radius:30px;
+    overflow:hidden;
+    margin:25px 0 12px;
+}
+
+.progress-bar{
+    width:0%;
+    height:100%;
+    border-radius:30px;
+    background:linear-gradient(to right,#3b82f6,#22c55e);
+    transition:0.5s ease;
+}
+
+#progressText{
+    font-weight:600;
+    color:#22c55e;
+}
+
+/* =========================
+   ROADMAP GRID
+========================= */
+
+#roadmap{
+    max-width:1100px;
+    margin:auto;
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:25px;
+}
+
+/* =========================
+   MONTH CARD
+========================= */
+
+.month-card{
+
+    background:rgba(255,255,255,.06);
+
+    backdrop-filter:blur(10px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:18px;
+
+    padding:22px;
+
+    transition:.35s;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.35);
+}
+
+.month-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 15px 30px rgba(59,130,246,.30);
+
+    border-color:#3b82f6;
+}
+
+.month-card h2{
+
+    margin-bottom:18px;
+
+    color:#60a5fa;
+}
+
+/* =========================
+   CHECKBOX LABEL
+========================= */
+
+.month-card label{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin:12px 0;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.month-card label:hover{
+
+    color:#60a5fa;
+
+    transform:translateX(6px);
+}
+
+/* =========================
+   CUSTOM CHECKBOX
+========================= */
+
+input[type="checkbox"]{
+
+    width:20px;
+
+    height:20px;
+
+    accent-color:#22c55e;
+
+    cursor:pointer;
+}
+
+/* =========================
+   PRACTICE SECTION
+========================= */
+
+.practice{
+
+    margin-top:18px;
+
+    padding-top:15px;
+
+    border-top:1px solid rgba(255,255,255,.1);
+
+    font-weight:600;
+
+    color:#facc15;
+}
+
+/* =========================
+   COMPLETED CARD
+========================= */
+
+.month-card.completed{
+
+    background:rgba(34,197,94,.15);
+
+    border:1px solid #22c55e;
+
+    box-shadow:0 0 20px rgba(34,197,94,.4);
+}
+
+.month-card.completed h2{
+
+    color:#4ade80;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+
+    text-align:center;
+
+    margin-top:45px;
+
+    color:#94a3b8;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:768px){
+
+header h1{
+
+font-size:2rem;
+
+}
+
+body{
+
+padding:20px;
+
+}
+
+.month-card{
+
+padding:18px;
+
+}
+
+}
+.days-left{
+
+    color:#fbbf24;
+
+    margin-bottom:15px;
+
+    font-size:14px;
+
+    font-weight:600;
+}
+
+/* =========================
+   TOPIC HOVER CARDS
+========================= */
+
+/* .topic{
+    position:relative;
+} */
+
+/* .hover-card{
+
+    position:absolute;
+
+    left:105%;
+
+    top:-10px;
+
+    width:260px;
+
+    background:#ffffff;
+
+    color:#1e293b;
+
+    border-radius:15px;
+
+    padding:16px;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.35);
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transform:translateY(10px) scale(.95);
+
+    transition:.3s ease;
+
+    z-index:999;
+}
+
+.topic:hover .hover-card{
+
+    opacity:1;
+
+    visibility:visible;
+
+    transform:translateY(0) scale(1);
+} */
+
+.hover-card h4{
+
+    color:#2563eb;
+
+    margin-bottom:10px;
+
+    font-size:16px;
+}
+
+.hover-card ul{
+
+    padding-left:18px;
+}
+
+.hover-card li{
+
+    margin:6px 0;
+
+    font-size:14px;
+
+    line-height:1.5;
+}
+/* 
+.hover-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:-8px;
+
+    top:20px;
+
+    width:16px;
+
+    height:16px;
+
+    background:#fff;
+
+    transform:rotate(45deg);
+} */
+
+/* =========================
+   EXPANDING SUBTOPICS
+========================= */
+
+.topic{
+    margin:10px 0;
+}
+
+.hover-card{
+
+    max-height:0;
+
+    overflow:hidden;
+
+    opacity:0;
+
+    background:rgba(255,255,255,.08);
+
+    border-left:4px solid #3b82f6;
+
+    border-radius:10px;
+
+    margin-left:28px;
+
+    margin-top:5px;
+
+    padding:0 15px;
+
+    transition:all .35s ease;
+}
+
+.topic:hover .hover-card{
+
+    max-height:300px;
+
+    opacity:1;
+
+    padding:12px 15px;
+}
+
+.hover-card h4{
+
+    color:#60a5fa;
+
+    margin-bottom:8px;
+
+    font-size:15px;
+}
+
+.hover-card ul{
+
+    padding-left:18px;
+}
+
+.hover-card li{
+
+    margin:5px 0;
+
+    color:#e5e7eb;
+
+    font-size:14px;
+}
+
+.subtopic{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin:8px 0;
+
+    font-size:14px;
+
+    color:#e5e7eb;
+
+    cursor:pointer;
+}
+
+.subtopic input{
+
+    width:16px;
+
+    height:16px;
+
+    accent-color:#22c55e;
+}
+
+.subtopic:hover{
+
+    color:#60a5fa;
+}
