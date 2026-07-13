@@ -6,29 +6,51 @@ let activeTabId = null;
 let isDarkMode = false;
 let isEyeCareMode = false;
 let eyeCareIntensity = 50;
+let currentScale = 1; // Tracks mobile zoom level
 
-// Dynamic Paper Color Calculator
 function getPaperColor() {
   if (!isEyeCareMode) return '#ffffff';
-  
-  // Maps the 0-100 slider to a lightness scale (98% off-white down to 82% deep sepia)
   const maxLightness = 98; 
   const minLightness = 82; 
   const lightness = maxLightness - ((eyeCareIntensity / 100) * (maxLightness - minLightness));
-  
   return `hsl(40, 60%, ${lightness}%)`;
 }
 
-// Initialize Canvas
 const canvas = new fabric.Canvas('studyCanvas', {
   backgroundColor: '#ffffff'
 });
 
 // -----------------------------------------
-// 1. TAB & SUBJECT CONFIGURATION ENGINE
+// 1. MOBILE RESPONSIVENESS ENGINE
+// -----------------------------------------
+function adjustCanvasScale() {
+  const scrollArea = document.getElementById('scrollArea');
+  const wrapper = document.getElementById('canvasWrapper');
+  const scaleContainer = document.getElementById('scaleContainer');
+  
+  // Calculate width accounting for padding
+  const padding = window.innerWidth < 640 ? 32 : 64; 
+  const availableWidth = scrollArea.clientWidth - padding;
+  
+  if (availableWidth < 794) {
+    currentScale = availableWidth / 794;
+    wrapper.style.transform = `scale(${currentScale})`;
+    // Adjust the container height so the scrollbar perfectly matches the shrunken canvas
+    scaleContainer.style.height = `${(A4_HEIGHT * totalPages) * currentScale}px`;
+  } else {
+    currentScale = 1;
+    wrapper.style.transform = 'none';
+    scaleContainer.style.height = 'auto';
+  }
+}
+
+// Trigger responsive scaling on load and when device is rotated
+window.addEventListener('resize', adjustCanvasScale);
+
+// -----------------------------------------
+// 2. TAB & SUBJECT CONFIGURATION ENGINE
 // -----------------------------------------
 window.addEventListener('load', function() {
-  // Load UI Theme Preference
   const savedTheme = localStorage.getItem('studyCanvasDarkMode');
   if (savedTheme === 'true') {
     isDarkMode = true;
@@ -36,14 +58,12 @@ window.addEventListener('load', function() {
     document.getElementById('themeToggleBtn').innerText = '☀️';
   }
 
-  // Load Eye-Care Intensity Preference
   const savedIntensity = localStorage.getItem('studyCanvasEyeCareIntensity');
   if (savedIntensity !== null) {
     eyeCareIntensity = parseInt(savedIntensity, 10);
     document.getElementById('eyeCareIntensity').value = eyeCareIntensity;
   }
 
-  // Load Eye-Care Mode Preference
   const savedEyeCare = localStorage.getItem('studyCanvasEyeCare');
   if (savedEyeCare === 'true') {
     isEyeCareMode = true;
@@ -55,12 +75,8 @@ window.addEventListener('load', function() {
   const savedTabs = localStorage.getItem('studyCanvasTabs');
   const savedActiveTabId = localStorage.getItem('studyCanvasActiveTabId');
 
-  if (savedTabs) {
-    tabs = JSON.parse(savedTabs);
-  } else {
-    const defaultId = 'tab_' + Date.now();
-    tabs = [{ id: defaultId, name: 'Default Subject' }];
-  }
+  if (savedTabs) tabs = JSON.parse(savedTabs);
+  else tabs = [{ id: 'tab_' + Date.now(), name: 'Default Subject' }];
 
   activeTabId = savedActiveTabId && tabs.find(t => t.id === savedActiveTabId) 
     ? savedActiveTabId 
@@ -68,6 +84,7 @@ window.addEventListener('load', function() {
 
   renderTabs();
   loadTabData(activeTabId);
+  adjustCanvasScale(); // Scale immediately on load
 });
 
 function renderTabs() {
@@ -76,12 +93,12 @@ function renderTabs() {
 
   tabs.forEach(tab => {
     const isActive = tab.id === activeTabId;
-    
     const tabEl = document.createElement('div');
+    
     if (isActive) {
-      tabEl.className = 'flex items-center gap-2 px-3 py-1 rounded-lg border text-xs font-medium cursor-pointer shadow-xs bg-blue-600 border-blue-600 text-white';
+      tabEl.className = 'flex items-center gap-2 px-3 py-1.5 rounded-lg border text-xs font-medium cursor-pointer shadow-xs bg-blue-600 border-blue-600 text-white whitespace-nowrap';
     } else {
-      tabEl.className = 'flex items-center gap-2 px-3 py-1 rounded-lg border text-xs font-medium cursor-pointer transition-all bg-gray-50 dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600';
+      tabEl.className = 'flex items-center gap-2 px-3 py-1.5 rounded-lg border text-xs font-medium cursor-pointer transition-all bg-gray-50 dark:bg-gray-700 border-gray-300 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600 whitespace-nowrap';
     }
     
     tabEl.setAttribute('onclick', `switchTab('${tab.id}')`);
@@ -89,7 +106,6 @@ function renderTabs() {
     const nameSpan = document.createElement('span');
     nameSpan.innerText = tab.name;
     nameSpan.className = 'select-none';
-    nameSpan.title = "Double-click tab to rename subject";
     tabEl.appendChild(nameSpan);
 
     tabEl.addEventListener('dblclick', (e) => {
@@ -100,16 +116,13 @@ function renderTabs() {
     if (tabs.length > 1) {
       const closeBtn = document.createElement('button');
       closeBtn.innerHTML = '&times;';
-      closeBtn.className = `ml-1 font-bold text-sm leading-none rounded-full w-4 h-4 flex items-center justify-center hover:bg-black/10 ${
-        isActive ? 'text-white' : 'text-gray-400 dark:text-gray-400 hover:text-gray-600 dark:hover:text-gray-200'
-      }`;
+      closeBtn.className = `ml-1 font-bold text-sm leading-none rounded-full w-4 h-4 flex items-center justify-center hover:bg-black/10 ${isActive ? 'text-white' : 'text-gray-400 dark:text-gray-400'}`;
       closeBtn.onclick = (e) => {
         e.stopPropagation();
         deleteTab(tab.id);
       };
       tabEl.appendChild(closeBtn);
     }
-
     container.appendChild(tabEl);
   });
 }
@@ -128,12 +141,12 @@ function createNewTab() {
   localStorage.setItem('studyCanvasActiveTabId', activeTabId);
 
   renderTabs();
-  
   canvas.clear();
   canvas.backgroundColor = getPaperColor();
   totalPages = 1;
   canvas.setHeight(A4_HEIGHT);
   canvas.renderAll();
+  adjustCanvasScale();
 }
 
 function switchTab(id) {
@@ -156,7 +169,7 @@ function renameTab(id) {
 }
 
 function deleteTab(id) {
-  if (confirm("Are you sure you want to delete this entire subject board? All saved progress within it will be lost.")) {
+  if (confirm("Are you sure you want to delete this subject?")) {
     const index = tabs.findIndex(t => t.id === id);
     if (index === -1) return;
     localStorage.removeItem(`canvasState_${id}`);
@@ -171,12 +184,11 @@ function deleteTab(id) {
 }
 
 // -----------------------------------------
-// 2. THEME & EYE-CARE ENGINES
+// 3. THEME & EYE-CARE ENGINES
 // -----------------------------------------
 function toggleDarkMode() {
   isDarkMode = !isDarkMode;
   const btn = document.getElementById('themeToggleBtn');
-  
   if (isDarkMode) {
     document.documentElement.classList.add('dark');
     btn.innerText = '☀️';
@@ -184,7 +196,6 @@ function toggleDarkMode() {
     document.documentElement.classList.remove('dark');
     btn.innerText = '🌙';
   }
-  
   localStorage.setItem('studyCanvasDarkMode', isDarkMode);
 }
 
@@ -192,21 +203,18 @@ function toggleEyeCare() {
   isEyeCareMode = !isEyeCareMode;
   const btn = document.getElementById('eyeCareToggleBtn');
   const slider = document.getElementById('eyeCareIntensity');
-  
   if (isEyeCareMode) {
     btn.innerText = '📖';
-    slider.classList.remove('hidden'); // Reveal slider
+    slider.classList.remove('hidden');
   } else {
     btn.innerText = '📄';
-    slider.classList.add('hidden'); // Hide slider
+    slider.classList.add('hidden');
   }
-  
   localStorage.setItem('studyCanvasEyeCare', isEyeCareMode);
   canvas.backgroundColor = getPaperColor();
   canvas.renderAll();
 }
 
-// Triggered instantly as you drag the slider
 function changeEyeCareIntensity(value) {
   eyeCareIntensity = parseInt(value, 10);
   localStorage.setItem('studyCanvasEyeCareIntensity', eyeCareIntensity);
@@ -215,7 +223,7 @@ function changeEyeCareIntensity(value) {
 }
 
 // -----------------------------------------
-// 3. STORAGE & SAVE ENGINE
+// 4. STORAGE & SAVE ENGINE
 // -----------------------------------------
 function loadTabData(id) {
   const state = localStorage.getItem(`canvasState_${id}`);
@@ -236,9 +244,11 @@ function loadTabData(id) {
     canvas.loadFromJSON(state, function() {
       canvas.backgroundColor = getPaperColor();
       canvas.renderAll();
+      adjustCanvasScale(); 
     });
   } else {
     canvas.renderAll();
+    adjustCanvasScale();
   }
 }
 
@@ -247,9 +257,7 @@ function silentSave(id) {
     const canvasData = canvas.toJSON();
     localStorage.setItem(`canvasState_${id}`, JSON.stringify(canvasData));
     localStorage.setItem(`canvasPages_${id}`, totalPages);
-  } catch (e) {
-    console.error("Silent storage configuration full!", e);
-  }
+  } catch (e) { console.error("Silent storage configuration full!", e); }
 }
 
 function manualSave() {
@@ -259,65 +267,76 @@ function manualSave() {
     msg.style.opacity = '1';
     setTimeout(() => { msg.style.opacity = '0'; }, 2000);
   } catch (error) {
-    console.error("Storage write overflow:", error);
-    alert("Warning: Board elements are getting too massive to save! Please download your PDF immediately.");
+    alert("Warning: Board is getting too massive to save! Download PDF immediately.");
   }
 }
 
 function clearCanvas() {
-  if (confirm("Are you sure you want to delete everything inside this specific subject? This cannot be undone.")) {
+  if (confirm("Are you sure you want to delete everything inside this subject?")) {
     canvas.clear();
     canvas.backgroundColor = getPaperColor();
     totalPages = 1;
     canvas.setHeight(A4_HEIGHT);
     canvas.renderAll();
-    
     localStorage.removeItem(`canvasState_${activeTabId}`);
     localStorage.setItem(`canvasPages_${activeTabId}`, 1);
+    adjustCanvasScale();
   }
 }
 
 // -----------------------------------------
-// 4. IMAGE PASTING
+// 5. IMAGE INSERTION (PASTE & UPLOAD)
 // -----------------------------------------
+// Handles Ctrl+V for Desktop
 window.addEventListener('paste', function(e) {
   const items = (e.clipboardData || e.originalEvent.clipboardData).items;
   for (let item of items) {
     if (item.kind === 'file' && item.type.startsWith('image/')) {
-      const blob = item.getAsFile();
-      const reader = new FileReader();
-      
-      reader.onload = function(event) {
-        const imgObj = new Image();
-        imgObj.src = event.target.result;
-        imgObj.onload = function() {
-          const image = new fabric.Image(imgObj);
-          
-          if (image.width > 600) image.scaleToWidth(600);
-          
-          const scrollArea = document.getElementById('scrollArea');
-          const currentScroll = scrollArea.scrollTop;
-          
-          image.set({
-            left: canvas.width / 2 - (image.getScaledWidth() / 2),
-            top: currentScroll + 100,
-          });
-          
-          canvas.add(image);
-          canvas.setActiveObject(image);
-        }
-      };
-      reader.readAsDataURL(blob);
+      processImageFile(item.getAsFile());
     }
   }
 });
 
+// Handles Mobile Upload Button
+function uploadImage(event) {
+  const file = event.target.files[0];
+  if (file) {
+    processImageFile(file);
+    event.target.value = ''; // Reset input so you can upload the same image again if needed
+  }
+}
+
+function processImageFile(file) {
+  const reader = new FileReader();
+  reader.onload = function(event) {
+    const imgObj = new Image();
+    imgObj.src = event.target.result;
+    imgObj.onload = function() {
+      const image = new fabric.Image(imgObj);
+      if (image.width > 600) image.scaleToWidth(600);
+      
+      const scrollArea = document.getElementById('scrollArea');
+      // Accurately calculate scroll position on mobile scaled screens
+      const currentScroll = scrollArea.scrollTop / currentScale;
+      
+      image.set({
+        left: canvas.width / 2 - (image.getScaledWidth() / 2),
+        top: currentScroll + 100,
+      });
+      
+      canvas.add(image);
+      canvas.setActiveObject(image);
+    }
+  };
+  reader.readAsDataURL(file);
+}
+
 // -----------------------------------------
-// 5. TEXT & STYLING CONTROLS
+// 6. TEXT & STYLING CONTROLS
 // -----------------------------------------
 function addText() {
   const scrollArea = document.getElementById('scrollArea');
-  const currentScroll = scrollArea.scrollTop;
+  const currentScroll = scrollArea.scrollTop / currentScale;
 
   const text = new fabric.IText('Double-click to edit', {
     left: 100,
@@ -340,7 +359,6 @@ canvas.on('mouse:dblclick', function(options) {
       fill: document.getElementById('colorPicker').value,
       fontSize: parseInt(document.getElementById('fontSize').value, 10),
     });
-    
     canvas.add(text);
     canvas.setActiveObject(text);
     text.enterEditing();
@@ -403,7 +421,7 @@ function updateToolbar() {
 }
 
 // -----------------------------------------
-// 6. REMOVING ELEMENTS
+// 7. REMOVING ELEMENTS
 // -----------------------------------------
 function deleteSelected() {
   const activeObjects = canvas.getActiveObjects();
@@ -424,12 +442,13 @@ window.addEventListener('keydown', function(e) {
 });
 
 // -----------------------------------------
-// 7. DYNAMIC BOARD DIMENSION EXTENSIONS
+// 8. DYNAMIC BOARD DIMENSION EXTENSIONS
 // -----------------------------------------
 function extendCanvas() {
   totalPages += 1;
   canvas.setHeight(A4_HEIGHT * totalPages);
   canvas.renderAll();
+  adjustCanvasScale();
   document.getElementById('scrollArea').scrollBy({ top: 300, behavior: 'smooth' });
 }
 
@@ -441,18 +460,18 @@ function reduceCanvas() {
   totalPages -= 1;
   canvas.setHeight(A4_HEIGHT * totalPages);
   canvas.renderAll();
+  adjustCanvasScale();
   document.getElementById('scrollArea').scrollBy({ top: -300, behavior: 'smooth' });
 }
 
 // -----------------------------------------
-// 8. HIGH-FIDELITY PDF RENDERING ENGINE
+// 9. HIGH-FIDELITY PDF RENDERING ENGINE
 // -----------------------------------------
 function downloadPDF() {
   const { jsPDF } = window.jspdf;
   
   canvas.discardActiveObject();
   
-  // SECRET TRICK: Force the canvas to pure white strictly for the PDF snapshot
   const originalBg = canvas.backgroundColor;
   canvas.backgroundColor = '#ffffff';
   canvas.renderAll();
@@ -463,7 +482,6 @@ function downloadPDF() {
     multiplier: 2
   });
   
-  // Restore the original eye-care color immediately after the snapshot
   canvas.backgroundColor = originalBg;
   canvas.renderAll();
   
@@ -485,16 +503,9 @@ function downloadPDF() {
     heightLeft -= pdfHeight;
   }
   
-  // const activeTab = tabs.find(t => t.id === activeTabId);
-  // const fileName = activeTab ? activeTab.name.replace(/\s+/g, '_') : 'Study_Board';
-  // pdf.save(`${fileName}_${new Date().toISOString().slice(0,10)}.pdf`);
-
   const activeTab = tabs.find(t => t.id === activeTabId);
-  
-  // Clean up the names by replacing spaces with underscores for a safe file name
   const tabName = activeTab ? activeTab.name.replace(/\s+/g, '_') : 'Subject';
   const siteTitle = document.title.replace(/\s+/g, '_'); 
   
-  // Save the PDF as: Freeform_Study_Canvas_-_Your_Tab_Name.pdf
   pdf.save(`${siteTitle}_-_${tabName}.pdf`);
 }
