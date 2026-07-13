@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sepia Space</title>
+
+  <link rel="shortcut icon" href="./ssfevi3.png" type="image/x-icon">
   
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -20,90 +22,97 @@
 <body id="appBody" class="bg-gray-300 dark:bg-gray-900 h-screen flex flex-col font-sans overflow-hidden transition-colors duration-200">
 
   <!-- Main Toolbar -->
-  <div id="mainToolbar" class="bg-white dark:bg-gray-800 px-4 pt-4 pb-2 shadow-sm flex flex-wrap gap-4 justify-between items-center z-10 border-b border-transparent dark:border-gray-700 transition-colors duration-200">
+  <div id="mainToolbar" class="bg-white dark:bg-gray-800 p-3 sm:p-4 shadow-sm flex flex-wrap gap-3 justify-between items-center z-10 border-b border-transparent dark:border-gray-700 transition-colors duration-200 overflow-y-auto max-h-48 sm:max-h-auto">
     
     <!-- Left Tools: Text & Formatting -->
-    <div class="flex gap-3 items-center flex-wrap">
-      <h1 class="text-lg font-bold text-gray-700 dark:text-gray-200 mr-2">Study Canvas</h1>
+    <div class="flex gap-2 sm:gap-3 items-center flex-wrap">
+      <h1 class="text-base sm:text-lg font-bold text-gray-700 dark:text-gray-200 mr-2 hidden sm:block">Sepia Space</h1>
       
-      <button onclick="addText()" class="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-200 rounded-lg border border-gray-300 dark:border-gray-600 text-sm font-medium cursor-pointer transition-colors">
-        + Add Text
+      <!-- NEW: Mobile Image Upload -->
+      <input type="file" id="imageUploader" accept="image/*" class="hidden" onchange="uploadImage(event)">
+      <button onclick="document.getElementById('imageUploader').click()" class="px-2.5 py-1.5 bg-blue-50 hover:bg-blue-100 dark:bg-blue-900/40 dark:text-blue-200 dark:border-blue-800 rounded-lg border border-blue-200 text-sm font-medium cursor-pointer transition-colors flex items-center gap-1">
+        📷 <span class="hidden sm:inline">Image</span>
+      </button>
+
+      <button onclick="addText()" class="px-2.5 py-1.5 bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-200 rounded-lg border border-gray-300 dark:border-gray-600 text-sm font-medium cursor-pointer transition-colors">
+        + Text
       </button>
       
-      <div class="flex items-center gap-2 border-l border-gray-300 dark:border-gray-600 pl-3">
-        <select id="fontFamily" onchange="changeFont(this.value)" class="p-1 border border-gray-300 dark:border-gray-600 rounded text-sm bg-gray-50 dark:bg-gray-700 dark:text-gray-200 cursor-pointer focus:outline-none">
+      <div class="flex items-center gap-1 sm:gap-2 border-l border-gray-300 dark:border-gray-600 pl-2 sm:pl-3">
+        <select id="fontFamily" onchange="changeFont(this.value)" class="p-1 border border-gray-300 dark:border-gray-600 rounded text-xs sm:text-sm bg-gray-50 dark:bg-gray-700 dark:text-gray-200 cursor-pointer focus:outline-none">
           <option value="sans-serif">Sans-Serif</option>
           <option value="serif">Serif</option>
           <option value="monospace">Monospace</option>
-          <option value="Arial">Arial</option>
-          <option value="Times New Roman">Times New Roman</option>
         </select>
         
-        <input type="number" id="fontSize" value="24" min="10" max="150" onchange="changeSize(this.value)" class="w-16 p-1 border border-gray-300 dark:border-gray-600 rounded text-sm bg-gray-50 dark:bg-gray-700 dark:text-gray-200 focus:outline-none">
+        <input type="number" id="fontSize" value="24" min="10" max="150" onchange="changeSize(this.value)" class="w-12 sm:w-16 p-1 border border-gray-300 dark:border-gray-600 rounded text-xs sm:text-sm bg-gray-50 dark:bg-gray-700 dark:text-gray-200 focus:outline-none">
         
-        <button onclick="toggleBold()" class="w-7 h-7 font-bold border border-gray-300 dark:border-gray-600 rounded bg-gray-50 dark:bg-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600 cursor-pointer">B</button>
-        <button onclick="toggleItalic()" class="w-7 h-7 italic border border-gray-300 dark:border-gray-600 rounded bg-gray-50 dark:bg-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600 cursor-pointer font-serif">I</button>
+        <button onclick="toggleBold()" class="w-7 h-7 font-bold border border-gray-300 dark:border-gray-600 rounded bg-gray-50 dark:bg-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600 cursor-pointer text-sm">B</button>
+        <button onclick="toggleItalic()" class="w-7 h-7 italic border border-gray-300 dark:border-gray-600 rounded bg-gray-50 dark:bg-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600 cursor-pointer font-serif text-sm">I</button>
         
-        <input type="color" id="colorPicker" value="#000000" oninput="changeColor(this.value)" class="w-7 h-7 cursor-pointer rounded border-0 ml-1">
+        <input type="color" id="colorPicker" value="#000000" oninput="changeColor(this.value)" class="w-7 h-7 cursor-pointer rounded border-0 mx-1">
       </div>
       
-      <button onclick="deleteSelected()" class="px-3 py-1.5 bg-red-50 hover:bg-red-100 dark:bg-red-950/40 dark:hover:bg-red-900/40 dark:text-red-400 text-red-600 rounded-lg border border-red-200 dark:border-red-900/60 text-sm font-medium ml-2 cursor-pointer transition-colors">
-        Delete
+      <button onclick="deleteSelected()" class="px-2.5 py-1.5 bg-red-50 hover:bg-red-100 dark:bg-red-950/40 dark:hover:bg-red-900/40 dark:text-red-400 text-red-600 rounded-lg border border-red-200 dark:border-red-900/60 text-sm font-medium cursor-pointer transition-colors">
+        Del
       </button>
     </div>
     
     <!-- Right Tools: Canvas Management & Saving -->
     <div class="flex gap-2 items-center flex-wrap">
       
-      <!-- NEW: Eye-Care Group with Intensity Slider -->
-      <div class="flex items-center gap-2 bg-gray-100 dark:bg-gray-700 rounded-lg border border-gray-300 dark:border-gray-600 px-2 py-1 mr-1 h-9">
-        <button onclick="toggleEyeCare()" id="eyeCareToggleBtn" class="text-lg cursor-pointer transition-colors" title="Toggle Eye-Care Paper (Sepia/White)">
+      <div class="flex items-center gap-1 sm:gap-2 bg-gray-100 dark:bg-gray-700 rounded-lg border border-gray-300 dark:border-gray-600 px-2 py-1 mr-1 h-9">
+        <button onclick="toggleEyeCare()" id="eyeCareToggleBtn" class="text-base sm:text-lg cursor-pointer transition-colors" title="Toggle Eye-Care Paper (Sepia/White)">
           📄
         </button>
-        <input type="range" id="eyeCareIntensity" min="0" max="100" value="50" oninput="changeEyeCareIntensity(this.value)" class="w-20 hidden accent-amber-600 cursor-pointer" title="Adjust Warmth Intensity">
+        <input type="range" id="eyeCareIntensity" min="0" max="100" value="50" oninput="changeEyeCareIntensity(this.value)" class="w-16 sm:w-20 hidden accent-amber-600 cursor-pointer">
       </div>
 
-      <button onclick="toggleDarkMode()" id="themeToggleBtn" class="bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-lg p-1 px-2.5 rounded-lg border border-gray-300 dark:border-gray-600 cursor-pointer transition-colors mr-1 h-9 flex items-center justify-center" title="Toggle UI Dark/Light Mode">
+      <button onclick="toggleDarkMode()" id="themeToggleBtn" class="bg-gray-100 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600 text-base sm:text-lg p-1 px-2 rounded-lg border border-gray-300 dark:border-gray-600 cursor-pointer transition-colors h-9 flex items-center justify-center mr-1">
         🌙
       </button>
 
-      <button onclick="reduceCanvas()" class="bg-amber-500 hover:bg-amber-600 text-white font-semibold px-3 py-1.5 rounded-lg shadow cursor-pointer text-sm">
-        - Reduce
+      <button onclick="reduceCanvas()" class="bg-amber-500 hover:bg-amber-600 text-white font-semibold px-2.5 py-1.5 rounded-lg shadow cursor-pointer text-xs sm:text-sm">
+        - Shrink
       </button>
-      <button onclick="extendCanvas()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-3 py-1.5 rounded-lg shadow cursor-pointer text-sm">
+      <button onclick="extendCanvas()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-2.5 py-1.5 rounded-lg shadow cursor-pointer text-xs sm:text-sm">
         + Extend
       </button>
       
-      <div class="w-px h-6 bg-gray-300 dark:bg-gray-600 mx-1"></div>
+      <div class="w-px h-6 bg-gray-300 dark:bg-gray-600 mx-0.5 sm:mx-1 hidden sm:block"></div>
       
-      <span id="saveMessage" class="text-green-600 dark:text-green-400 font-bold text-sm opacity-0 transition-opacity duration-300 mr-1">Saved!</span>
-      <button onclick="manualSave()" class="bg-gray-800 hover:bg-gray-900 dark:bg-gray-950 dark:hover:bg-black text-white font-semibold px-4 py-1.5 rounded-lg shadow cursor-pointer text-sm">
+      <span id="saveMessage" class="text-green-600 dark:text-green-400 font-bold text-xs sm:text-sm opacity-0 transition-opacity duration-300 mr-1 hidden sm:inline">Saved!</span>
+      
+      <button onclick="manualSave()" class="bg-gray-800 hover:bg-gray-900 dark:bg-gray-950 dark:hover:bg-black text-white font-semibold px-3 py-1.5 rounded-lg shadow cursor-pointer text-xs sm:text-sm">
         Save
       </button>
 
-      <button onclick="clearCanvas()" class="bg-red-600 hover:bg-red-700 text-white font-semibold px-3 py-1.5 rounded-lg shadow cursor-pointer text-sm">
-        Clear Board
+      <button onclick="clearCanvas()" class="bg-red-600 hover:bg-red-700 text-white font-semibold px-3 py-1.5 rounded-lg shadow cursor-pointer text-xs sm:text-sm">
+        Clear
       </button>
-      <button onclick="downloadPDF()" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-1.5 rounded-lg shadow cursor-pointer text-sm">
-        Download PDF
+      <button onclick="downloadPDF()" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-3 py-1.5 rounded-lg shadow cursor-pointer text-xs sm:text-sm">
+        PDF
       </button>
     </div>
   </div>
 
-  <!-- Dynamic Tab Bar Sub-Toolbar -->
-  <div id="tabBar" class="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 px-4 py-2 flex items-center justify-between shadow-md z-10 transition-colors duration-200">
-    <div id="tabContainer" class="flex gap-2 overflow-x-auto max-w-[80%] py-1">
+  <!-- Dynamic Tab Bar -->
+  <div id="tabBar" class="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 px-3 py-2 flex items-center justify-between shadow-md z-10 transition-colors duration-200">
+    <div id="tabContainer" class="flex gap-2 overflow-x-auto max-w-[70%] sm:max-w-[80%] py-1 custom-scrollbar">
       <!-- Tabs load here -->
     </div>
-    <button onclick="createNewTab()" class="bg-blue-50 hover:bg-blue-100 dark:bg-blue-950/40 dark:hover:bg-blue-900/40 dark:text-blue-400 dark:border-blue-900/60 text-blue-600 border border-blue-200 font-medium px-3 py-1.5 rounded-lg text-xs cursor-pointer transition-colors">
-      + New Subject Tab
+    <button onclick="createNewTab()" class="whitespace-nowrap bg-blue-50 hover:bg-blue-100 dark:bg-blue-950/40 dark:hover:bg-blue-900/40 dark:text-blue-400 dark:border-blue-900/60 text-blue-600 border border-blue-200 font-medium px-2 sm:px-3 py-1.5 rounded-lg text-xs cursor-pointer transition-colors">
+      + New Subject
     </button>
   </div>
 
   <!-- Canvas Container -->
-  <div class="flex-1 overflow-auto flex justify-center items-start p-8 custom-scrollbar" id="scrollArea">
-    <div class="shadow-xl bg-white ring-1 ring-gray-200 dark:ring-gray-800 relative transition-colors duration-200" id="canvasWrapper">
-      <canvas id="studyCanvas" width="794" height="1123"></canvas>
+  <div class="flex-1 overflow-auto p-4 sm:p-8 custom-scrollbar" id="scrollArea">
+    <!-- NEW: Mobile Scaling Wrapper -->
+    <div class="flex justify-center origin-top transition-transform duration-200" id="scaleContainer">
+      <div class="shadow-xl bg-white ring-1 ring-gray-200 dark:ring-gray-800 relative transition-colors duration-200 origin-top" id="canvasWrapper">
+        <canvas id="studyCanvas" width="794" height="1123"></canvas>
+      </div>
     </div>
   </div>
 
